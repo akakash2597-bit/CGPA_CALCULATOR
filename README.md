@@ -39,7 +39,7 @@ The calculator follows the Rajalakshmi Institute of Technology (Anna University)
 
 ✅ Step 2.1 - Calculator Layout
 
-⬜ Step 2.2 - Dynamic Subject Cards
+✅ Step 2.2 - Dynamic Subject Cards
 
 ⬜ Step 2.3 - Validation
 
