@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🎓 CGPA Calculator
 
 A professional CGPA Calculator developed using HTML, CSS and JavaScript.
@@ -39,3 +40,6 @@ The calculator follows the Rajalakshmi Institute of Technology (Anna University)
 ⬜ Step 2 - Calculator Page
 
 ⬜ Step 3 - Result Page
+=======
+# CGPA_CALCULATOR
+>>>>>>> c84920ddd1c500f930719223ee8794312187127d
