@@ -237,3 +237,82 @@ function generateSubjectCards() {
     scrollToElement(subjectContainer);
 
 }
+// ============================================
+// SEMESTER.JS
+// Part 3 - Collect Subject Data
+// ============================================
+
+// Calculate Button Event
+calculateBtn.addEventListener("click", collectSubjectData);
+
+// ============================================
+// Collect Subject Information
+// ============================================
+
+function collectSubjectData() {
+
+    // Clear previous data
+    for (let i = 0; i < semesterData.length; i++) {
+
+        semesterData[i].subjects = [];
+
+    }
+
+    const semesterSections = document.querySelectorAll(".semester-subject-section");
+
+    // Loop through each semester
+    semesterSections.forEach((section, semesterIndex) => {
+
+        const subjectCards = section.querySelectorAll(".subject-card");
+
+        // Loop through each subject
+        subjectCards.forEach((card) => {
+
+            const courseName = card.querySelector(".course-name").value.trim();
+
+            const credit = card.querySelector(".credit").value;
+
+            const grade = card.querySelector(".grade").value;
+
+            // Validate Input
+            if (!validateSubject(courseName, credit, grade)) {
+
+                showMessage(
+                    "Please complete all subject details before calculating CGPA.",
+                    "error"
+                );
+
+                throw new Error("Validation Failed");
+
+            }
+
+            // Store Subject
+            semesterData[semesterIndex].subjects.push({
+
+                courseName: courseName,
+
+                credit: Number(credit),
+
+                gradePoint: Number(grade)
+
+            });
+
+        });
+
+    });
+
+    clearMessage();
+
+    showMessage(
+        "All subject details collected successfully.",
+        "success"
+    );
+
+    console.log("Semester Data");
+
+    console.log(semesterData);
+
+    // Call CGPA Calculation
+    calculateCGPA(semesterData);
+
+}
