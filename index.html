@@ -101,11 +101,56 @@
 
     </section>
 
-    <!-- Calculator Section (Coming in Step 2) -->
+    <!-- ================= CALCULATOR SECTION ================= -->
 
-    <section id="calculator">
+<section id="calculator" class="calculator-section">
 
-    </section>
+    <div class="calculator-container">
+
+        <h2>CGPA Calculator</h2>
+
+        <p class="calculator-description">
+            Enter the number of subjects to generate the subject cards.
+        </p>
+
+        <div class="subject-count">
+
+            <label for="subjectNumber">
+                Number of Subjects
+            </label>
+
+            <input
+                type="number"
+                id="subjectNumber"
+                min="1"
+                max="20"
+                placeholder="Example: 6">
+
+            <button id="generateBtn">
+                Generate Subjects
+            </button>
+
+        </div>
+
+        <!-- Subject Cards -->
+
+        <div id="subjectsContainer">
+
+        </div>
+
+        <div class="calculate-area">
+
+            <button id="calculateBtn">
+
+                Calculate CGPA
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
     <!-- ================= FOOTER ================= -->
 

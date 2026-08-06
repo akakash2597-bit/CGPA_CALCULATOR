@@ -35,9 +35,15 @@ The calculator follows the Rajalakshmi Institute of Technology (Anna University)
 
 ## 📌 Project Status
 
-✅ Step 1 Completed
+✅ Step 1 - Welcome Page
 
-⬜ Step 2 - Calculator Page
+✅ Step 2.1 - Calculator Layout
+
+⬜ Step 2.2 - Dynamic Subject Cards
+
+⬜ Step 2.3 - Validation
+
+⬜ Step 2.4 - Prepare Calculation
 
 ⬜ Step 3 - Result Page
 =======
