@@ -1,105 +1,116 @@
 // =========================
-// Welcome Page Buttons
+// Welcome Page
 // =========================
 
 const startBtn = document.getElementById("startBtn");
 const heroBtn = document.getElementById("heroBtn");
 const calculator = document.getElementById("calculator");
 
-function goToCalculator(){
+startBtn.addEventListener("click", () => {
+    calculator.scrollIntoView({ behavior: "smooth" });
+});
 
-    calculator.scrollIntoView({
-
-        behavior:"smooth"
-
-    });
-
-}
-
-startBtn.addEventListener("click",goToCalculator);
-heroBtn.addEventListener("click",goToCalculator);
+heroBtn.addEventListener("click", () => {
+    calculator.scrollIntoView({ behavior: "smooth" });
+});
 
 // =========================
 // Calculator
 // =========================
 
-const generateBtn=document.getElementById("generateBtn");
+const generateBtn = document.getElementById("generateBtn");
+const calculateBtn = document.getElementById("calculateBtn");
+const subjectsContainer = document.getElementById("subjectsContainer");
+const messageBox = document.getElementById("messageBox");
+const subjectInput = document.getElementById("subjectNumber");
 
-const calculateBtn=document.getElementById("calculateBtn");
+// Disable button initially
+calculateBtn.disabled = true;
 
-const subjectsContainer=document.getElementById("subjectsContainer");
+generateBtn.addEventListener("click", generateSubjects);
 
-generateBtn.addEventListener("click",generateSubjects);
+function showMessage(message, type){
+
+    messageBox.textContent = message;
+
+    messageBox.className = "message-box";
+
+    if(type === "success"){
+        messageBox.classList.add("message-success");
+    }else{
+        messageBox.classList.add("message-error");
+    }
+
+}
 
 function generateSubjects(){
 
-    const totalSubjects=document.getElementById("subjectNumber").value;
+    const totalSubjects = Number(subjectInput.value);
 
-    subjectsContainer.innerHTML="";
+    subjectsContainer.innerHTML = "";
 
-    if(totalSubjects==="" || totalSubjects<=0){
+    calculateBtn.disabled = true;
 
-        alert("Please enter a valid number of subjects.");
+    if(!totalSubjects){
+
+        showMessage("Please enter the number of subjects.","error");
 
         return;
 
     }
 
-    for(let i=1;i<=totalSubjects;i++){
+    if(totalSubjects < 1 || totalSubjects > 20){
 
-        const card=document.createElement("div");
+        showMessage("Number of subjects must be between 1 and 20.","error");
 
-        card.className="subject-card";
+        return;
 
-        card.innerHTML=`
+    }
 
-        <h3>Subject ${i}</h3>
+    for(let i = 1; i <= totalSubjects; i++){
 
-        <label>Course Name</label>
+        const card = document.createElement("div");
 
-        <input
-        type="text"
-        placeholder="Example: Mathematics">
+        card.className = "subject-card";
 
-        <label>Credits</label>
+        card.innerHTML = `
 
-        <select>
+            <h3>Subject ${i}</h3>
 
-            <option value="">Select Credit</option>
+            <label>Course Name</label>
 
-            <option value="1">1</option>
+            <input type="text"
+                   placeholder="Example: Mathematics">
 
-            <option value="2">2</option>
+            <label>Credits</label>
 
-            <option value="3">3</option>
+            <select>
 
-            <option value="4">4</option>
+                <option value="">Select Credit</option>
 
-            <option value="5">5</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
 
-        </select>
+            </select>
 
-        <label>Grade</label>
+            <label>Grade</label>
 
-        <select>
+            <select>
 
-            <option value="">Select Grade</option>
+                <option value="">Select Grade</option>
 
-            <option value="10">O</option>
+                <option value="10">O</option>
+                <option value="9">A+</option>
+                <option value="8">A</option>
+                <option value="7">B+</option>
+                <option value="6">B</option>
+                <option value="5">C</option>
+                <option value="0">RA</option>
 
-            <option value="9">A+</option>
-
-            <option value="8">A</option>
-
-            <option value="7">B+</option>
-
-            <option value="6">B</option>
-
-            <option value="5">C</option>
-
-            <option value="0">RA</option>
-
-        </select>
+            </select>
 
         `;
 
@@ -107,10 +118,27 @@ function generateSubjects(){
 
     }
 
+    calculateBtn.disabled = false;
+
+    showMessage(
+        `${totalSubjects} subject cards generated successfully.`,
+        "success"
+    );
+
+    subjectsContainer.scrollIntoView({
+
+        behavior:"smooth",
+        block:"start"
+
+    });
+
 }
 
-calculateBtn.addEventListener("click",()=>{
+calculateBtn.addEventListener("click", () => {
 
-    alert("CGPA calculation will be added in Step 3.");
+    showMessage(
+        "CGPA calculation will be implemented in Step 3.",
+        "success"
+    );
 
 });
