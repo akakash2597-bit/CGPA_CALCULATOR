@@ -97,3 +97,143 @@ function generateSemesterCards() {
     scrollToElement(semesterContainer);
 
 }
+// ============================================
+// SEMESTER.JS
+// Part 2 - Generate Subject Cards
+// ============================================
+
+// Event Listener
+generateSubjectsBtn.addEventListener("click", generateSubjectCards);
+
+// ============================================
+// Generate Subject Cards
+// ============================================
+
+function generateSubjectCards() {
+
+    // Clear old subject cards
+    subjectContainer.innerHTML = "";
+
+    semesterData = [];
+
+    const subjectInputs = document.querySelectorAll(".subject-count-input");
+
+    // Validate all semester inputs
+    for (let i = 0; i < subjectInputs.length; i++) {
+
+        const subjectCount = subjectInputs[i].value;
+
+        if (!validateSubjectCount(subjectCount)) {
+
+            showMessage(
+                `Please enter a valid number of subjects for Semester ${i + 1}.`,
+                "error"
+            );
+
+            return;
+        }
+
+    }
+
+    // Generate Subject Cards
+    for (let semesterIndex = 0; semesterIndex < subjectInputs.length; semesterIndex++) {
+
+        const subjectCount = Number(subjectInputs[semesterIndex].value);
+
+        const semesterSection = document.createElement("div");
+
+        semesterSection.className = "semester-subject-section";
+
+        semesterSection.innerHTML = `
+            <h2>Semester ${semesterIndex + 1}</h2>
+        `;
+
+        // Store semester information
+        semesterData.push({
+
+            semester: semesterIndex + 1,
+
+            totalSubjects: subjectCount,
+
+            subjects: []
+
+        });
+
+        // Create Subject Cards
+        for (let subjectIndex = 1; subjectIndex <= subjectCount; subjectIndex++) {
+
+            const card = document.createElement("div");
+
+            card.className = "subject-card";
+
+            card.innerHTML = `
+
+                <h3>Subject ${subjectIndex}</h3>
+
+                <label>Course Name</label>
+
+                <input
+                    type="text"
+                    class="course-name"
+                    placeholder="Example : Data Structures">
+
+                <label>Credits</label>
+
+                <select class="credit">
+
+                    <option value="">Select Credit</option>
+
+                    <option value="1">1</option>
+
+                    <option value="2">2</option>
+
+                    <option value="3">3</option>
+
+                    <option value="4">4</option>
+
+                    <option value="5">5</option>
+
+                </select>
+
+                <label>Grade</label>
+
+                <select class="grade">
+
+                    <option value="">Select Grade</option>
+
+                    <option value="10">O</option>
+
+                    <option value="9">A+</option>
+
+                    <option value="8">A</option>
+
+                    <option value="7">B+</option>
+
+                    <option value="6">B</option>
+
+                    <option value="5">C</option>
+
+                    <option value="0">RA</option>
+
+                </select>
+
+            `;
+
+            semesterSection.appendChild(card);
+
+        }
+
+        subjectContainer.appendChild(semesterSection);
+
+    }
+
+    showButton(calculateBtn);
+
+    showMessage(
+        "Subject cards generated successfully.",
+        "success"
+    );
+
+    scrollToElement(subjectContainer);
+
+}
