@@ -316,3 +316,113 @@ function collectSubjectData() {
     calculateCGPA(semesterData);
 
 }
+// ============================================
+// SEMESTER.JS
+// Part 4 - Helper Functions
+// ============================================
+
+// ============================================
+// Reset Calculator
+// ============================================
+
+function resetCalculator() {
+
+    // Clear semester input
+    semesterCountInput.value = "";
+
+    // Clear generated content
+    semesterContainer.innerHTML = "";
+    subjectContainer.innerHTML = "";
+
+    // Reset variables
+    totalSemesters = 0;
+    semesterData = [];
+
+    // Hide buttons
+    hideButton(generateSubjectsBtn);
+    hideButton(calculateBtn);
+
+    // Clear messages
+    clearMessage();
+
+}
+
+// ============================================
+// Get Semester Data
+// ============================================
+
+function getSemesterData() {
+
+    return semesterData;
+
+}
+
+// ============================================
+// Clear Subject Cards
+// ============================================
+
+function clearSubjectCards() {
+
+    subjectContainer.innerHTML = "";
+
+    hideButton(calculateBtn);
+
+}
+
+// ============================================
+// Clear Semester Cards
+// ============================================
+
+function clearSemesterCards() {
+
+    semesterContainer.innerHTML = "";
+
+    subjectContainer.innerHTML = "";
+
+    hideButton(generateSubjectsBtn);
+
+    hideButton(calculateBtn);
+
+}
+
+// ============================================
+// Refresh Calculator
+// ============================================
+
+function refreshCalculator() {
+
+    clearSemesterCards();
+
+    semesterData = [];
+
+    totalSemesters = 0;
+
+    clearMessage();
+
+}
+
+// ============================================
+// Check if Semester Data Exists
+// ============================================
+
+function hasSemesterData() {
+
+    return semesterData.length > 0;
+
+}
+
+// ============================================
+// Print Semester Data (Debugging)
+// ============================================
+
+function printSemesterData() {
+
+    console.log("========== Semester Data ==========");
+
+    console.table(semesterData);
+
+}
+
+// ============================================
+// End of semester.js
+// ============================================
