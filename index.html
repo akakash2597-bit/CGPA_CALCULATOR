@@ -1,163 +1,360 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CGPA Calculator</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CGPA Calculator - Rajalakshmi Institute of Technology</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c3c6d1",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "surface": "#fbf9f8",
+                        "on-primary-fixed": "#001b3c",
+                        "inverse-on-surface": "#f3f0f0",
+                        "inverse-surface": "#303030",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "surface-container": "#f0eded",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#d5e3ff",
+                        "on-surface-variant": "#43474f",
+                        "secondary": "#775a19",
+                        "tertiary": "#1c1f20",
+                        "on-primary-fixed-variant": "#1f477b",
+                        "on-secondary-container": "#785a1a",
+                        "surface-container-highest": "#e4e2e1",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "on-primary-container": "#799dd6",
+                        "tertiary-fixed": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#313435",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container-high": "#eae8e7",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fbf9f8",
+                        "on-secondary-fixed": "#261900",
+                        "outline": "#737780",
+                        "secondary-fixed-dim": "#e9c176",
+                        "on-tertiary-container": "#9a9c9d",
+                        "inverse-primary": "#a7c8ff",
+                        "secondary-fixed": "#ffdea5",
+                        "secondary-container": "#fed488",
+                        "background": "#fbf9f8",
+                        "primary-container": "#003366",
+                        "surface-tint": "#3a5f94",
+                        "on-surface": "#1b1c1c",
+                        "primary": "#001e40",
+                        "surface-variant": "#e4e2e1",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "on-background": "#1b1c1c",
+                        "on-tertiary-fixed": "#191c1d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "container-max-width": "1200px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .hidden-screen { display: none !important; }
+    </style>
 </head>
-<body>
-
-<!-- ================= WELCOME SCREEN ================= -->
-
-<section id="welcomeScreen" class="screen active">
-
-    <div class="card">
-
-        <h1>CGPA Calculator</h1>
-
-        <p>
-            Calculate your CGPA accurately using the
-            Rajalakshmi Institute of Technology grading system.
-        </p>
-
-        <button id="startBtn">
-            Start Calculating
-        </button>
-
-    </div>
-
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md antialiased selection:bg-secondary selection:text-on-secondary">
+<!-- Shared Header -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-margin-mobile md:px-margin-desktop h-16 bg-primary dark:bg-primary-container shadow-md border-b-4 border-secondary dark:border-secondary-fixed">
+<div class="flex items-center gap-4 w-full justify-between max-w-[1200px] mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-primary dark:text-on-primary-container" data-icon="school">school</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-primary dark:text-on-primary-container hidden md:inline">Rajalakshmi Institute of Technology</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-primary dark:text-on-primary-container md:hidden">RIT</span>
+</div>
+<div class="flex items-center gap-4 hidden md:flex">
+<span class="text-on-primary font-bold cursor-pointer border-b-2 border-secondary pb-1" onclick="showScreen('welcome-screen')">Calculator</span>
+<span class="text-on-primary/80 hover:bg-primary-container/20 transition-colors cursor-pointer px-2 py-1 rounded">About</span>
+<span class="material-symbols-outlined text-on-primary/80 hover:bg-primary-container/20 transition-colors cursor-pointer p-1 rounded" data-icon="account_circle">account_circle</span>
+</div>
+<div class="flex items-center md:hidden">
+<span class="material-symbols-outlined text-on-primary/80 hover:bg-primary-container/20 transition-colors cursor-pointer p-1 rounded" data-icon="menu">menu</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center pt-24 pb-16 px-margin-mobile md:px-margin-desktop relative overflow-hidden w-full">
+<!-- WELCOME SCREEN -->
+<div class="z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center" id="welcome-screen">
+<!-- Logo Container -->
+<div class="mb-8 p-4 bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-surface-variant transition-transform hover:scale-105 duration-300">
+<img alt="Rajalakshmi Institute of Technology Logo" class="w-32 h-32 md:w-40 md:h-40 object-contain rounded-full" src="https://lh3.googleusercontent.com/aida/AP1WRLs2opcSqSSUEmlckw-284qeENGJ0QfdMkTYQ2pP5pcDlhXyr8RxoOyE0_SghkMF1uT9oKK1Qv82-tG4Bzf8sTDoRO-KtAwBxhcvv_NE6Kvx7nI4BrEwVxS4fO8FsBXYyZiNEEoOjycZlMvf_5kRlej5vXazkhZDNrJCnzfXhlTpw1UblO_cOCgdLNYNGdg_mBOPPwr8qiyk3Mv6AJW2TSlydonNjbOTSUqXHgcqClMJTOrrCsqnR4UIchc"/>
+</div>
+<!-- Welcome Text -->
+<div class="space-y-4 mb-10 max-w-2xl">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight">
+                            CGPA Calculator
+                        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                            Calculate your academic performance with precision. Designed specifically for students of Rajalakshmi Institute of Technology (Affiliated to Anna University).
+                        </p>
+</div>
+<!-- Action Button -->
+<button class="group relative inline-flex items-center justify-center px-8 py-4 font-label-md text-label-md text-on-primary bg-primary rounded-xl overflow-hidden transition-all hover:shadow-[0_8px_25px_rgba(0,30,64,0.3)] active:scale-95" id="get-started-cta" onclick="showScreen('calculation-screen')">
+<span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
+<span class="relative flex items-center gap-2">
+                            Get Started
+                            <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</button>
+<!-- Features Bento Box -->
+<div class="mt-20 w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Feature 1 -->
+<div class="bg-white p-6 rounded-2xl border border-surface-variant shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center mb-4 text-primary">
+<span class="material-symbols-outlined" data-icon="calculate">calculate</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">Accurate Calculation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Based on the latest Anna University grading regulations.</p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-white p-6 rounded-2xl border border-surface-variant shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center mb-4 text-secondary">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">Semester Tracking</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Easily manage and track your SGPA across multiple semesters.</p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-white p-6 rounded-2xl border border-surface-variant shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center mb-4 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">Export Results</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Save or print your calculated results for future reference.</p>
+</div>
+</div>
+</div>
+<!-- CALCULATION SCREEN -->
+<div class="hidden-screen w-full max-w-container-max-width mx-auto flex-col gap-8" id="calculation-screen">
+<!-- Header Section -->
+<section class="flex flex-col gap-2 border-l-4 border-primary pl-4">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Semester GPA Calculation</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Enter your course details below to calculate your SGPA. Note: RA (Reappearance) grades earn 0 grade points and are typically excluded from successful credit totals.</p>
 </section>
-
-<!-- ================= CALCULATOR SCREEN ================= -->
-
-<section id="calculatorScreen" class="screen">
-
-    <div class="calculator-card">
-
-        <h2>CGPA Calculator</h2>
-
-        <div class="progress">
-
-            <div class="active-step">1</div>
-            <div class="line"></div>
-            <div class="active-step">2</div>
-            <div class="line"></div>
-            <div>3</div>
-
-        </div>
-
-        <div class="formula">
-            CGPA = Σ(Credit × Grade Point) ÷ Σ(Credits)
-        </div>
-
-        <div id="errorBox"></div>
-
-        <div id="subjects"></div>
-
-        <button id="addSubject">
-            + Add Subject
-        </button>
-
-        <div class="buttons">
-
-            <button id="resetBtn">
-                Reset
-            </button>
-
-            <button id="calculateBtn">
-                Calculate CGPA
-            </button>
-
-        </div>
-
-    </div>
-
+<!-- Calculator Card -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden w-full">
+<div class="border-t-4 border-secondary"></div>
+<div class="p-4 md:p-6 lg:p-8 flex flex-col gap-6">
+<div class="flex flex-col gap-4" id="courses-container">
+<!-- Courses will be injected here by JS -->
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col md:flex-row justify-between items-center pt-4 border-t border-outline-variant gap-4">
+<button class="w-full md:w-auto px-6 py-2 rounded font-label-md text-label-md border-2 border-secondary text-secondary hover:bg-secondary/10 transition-colors flex items-center justify-center gap-2" onclick="addCourse()">
+<span class="material-symbols-outlined text-sm">add</span>
+                                Add Course
+                            </button>
+<button class="w-full md:w-auto px-8 py-3 rounded bg-primary text-on-primary font-label-md text-label-md shadow hover:bg-primary-container transition-colors flex items-center justify-center gap-2" onclick="calculateSGPA()">
+<span class="material-symbols-outlined text-sm">calculate</span>
+                                Calculate SGPA
+                            </button>
+</div>
+</div>
 </section>
-<!-- ================= RESULT SCREEN ================= -->
-
-<section id="resultScreen" class="screen">
-
-    <div class="calculator-card">
-
-        <h2>Your Result</h2>
-
-        <div class="progress">
-
-            <div class="active-step">1</div>
-            <div class="line"></div>
-            <div class="active-step">2</div>
-            <div class="line"></div>
-            <div class="active-step">3</div>
-
+</div>
+<!-- RESULT SCREEN -->
+<div class="hidden-screen w-full max-w-lg bg-surface-container-lowest border border-outline-variant shadow-[0px_4px_20px_rgba(0,0,0,0.05)] rounded-xl overflow-hidden relative mx-auto" id="result-screen">
+<!-- Result Header Accent -->
+<div class="h-2 bg-primary w-full absolute top-0 left-0"></div>
+<div class="p-6 md:p-8 flex flex-col items-center text-center mt-4">
+<!-- SGPA Display -->
+<div class="mb-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface-variant uppercase tracking-wider mb-2">Semester SGPA</h2>
+<div class="flex items-baseline justify-center gap-1 text-primary">
+<span class="font-headline-lg-mobile md:font-headline-lg text-6xl md:text-7xl font-extrabold tracking-tighter" id="final-sgpa">0.00</span>
+</div>
+</div>
+<!-- Status Indicator -->
+<div class="inline-flex items-center gap-2 bg-secondary-container/20 text-on-secondary-container px-4 py-2 rounded-full mb-8 border border-secondary-container/50" id="performance-badge">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-label-md text-label-md" id="performance-text">Excellent Performance</span>
+</div>
+<!-- Summary Grid -->
+<div class="grid grid-cols-2 gap-4 w-full mb-8">
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant/50 flex flex-col items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant mb-1">Total Credits</span>
+<span class="font-headline-md text-headline-md text-on-surface" id="final-credits">0</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant/50 flex flex-col items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant mb-1">Total Points</span>
+<span class="font-headline-md text-headline-md text-on-surface" id="final-points">0</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col sm:flex-row gap-4 w-full">
+<button class="flex-1 py-3 px-6 rounded-lg font-label-md text-label-md border-2 border-primary text-primary hover:bg-primary/5 transition-colors flex items-center justify-center gap-2" onclick="showScreen('calculation-screen')">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+                                Calculate Again
+                            </button>
+<button class="flex-1 py-3 px-6 rounded-lg font-label-md text-label-md bg-primary text-on-primary hover:bg-primary/90 transition-colors shadow-sm flex items-center justify-center gap-2" onclick="window.print()">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">download</span>
+                                Download Result
+                            </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-highest dark:bg-tertiary-container mt-auto border-t border-outline-variant/20">
+<div class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-tertiary-container text-center md:text-left">
+            © 2024 Rajalakshmi Institute of Technology. All Rights Reserved.
         </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer" href="#">Academic Calendar</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer" href="#">Regulations</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer" href="#">Contact Support</a>
+</div>
+</footer>
+<script>
+    function showScreen(screenId) {
+        document.getElementById('welcome-screen').classList.add('hidden-screen');
+        document.getElementById('welcome-screen').classList.remove('flex');
+        
+        document.getElementById('calculation-screen').classList.add('hidden-screen');
+        document.getElementById('calculation-screen').classList.remove('flex');
+        
+        document.getElementById('result-screen').classList.add('hidden-screen');
+        document.getElementById('result-screen').classList.remove('flex');
 
-        <div class="result-card">
+        const target = document.getElementById(screenId);
+        target.classList.remove('hidden-screen');
+        target.classList.add('flex');
+        window.scrollTo(0,0);
+    }
 
-            <h3>Final CGPA</h3>
+    let courseCount = 0;
 
-            <div id="cgpaValue">
-                0.00
+    function createCourseElement() {
+        courseCount++;
+        const div = document.createElement('div');
+        div.className = 'bg-surface-bright border border-outline-variant rounded-lg p-4 relative group flex flex-col md:flex-row gap-4 items-end course-item';
+        div.innerHTML = `
+            <div class="flex-grow w-full md:w-auto">
+                <label class="font-label-sm text-label-sm text-on-surface-variant mb-1 block">Course Name</label>
+                <input class="w-full bg-transparent border border-outline-variant rounded p-2 focus:border-primary text-body-sm text-on-surface" placeholder="Course ${courseCount}" type="text">
             </div>
-
-            <div id="performanceBadge">
-                Excellent
+            <div class="w-full md:w-32">
+                <label class="font-label-sm text-label-sm text-on-surface-variant mb-1 block">Credits</label>
+                <input class="course-credit w-full bg-transparent border border-outline-variant rounded p-2 focus:border-primary text-body-sm text-on-surface" type="number" min="1" max="6" value="3">
             </div>
-
-            <p id="performanceMessage">
-                Keep up the great work!
-            </p>
-
-            <hr>
-
-            <div class="result-grid">
-
-                <div class="result-item">
-
-                    <h4>Total Subjects</h4>
-
-                    <p id="subjectCount">0</p>
-
-                </div>
-
-                <div class="result-item">
-
-                    <h4>Total Credits</h4>
-
-                    <p id="totalCredits">0</p>
-
-                </div>
-
-                <div class="result-item">
-
-                    <h4>Total Grade Points</h4>
-
-                    <p id="totalGradePoints">0</p>
-
-                </div>
-
+            <div class="w-full md:w-48">
+                <label class="font-label-sm text-label-sm text-on-surface-variant mb-1 block">Grade</label>
+                <select class="course-grade w-full bg-transparent border border-outline-variant rounded p-2 focus:border-primary text-body-sm text-on-surface">
+                    <option value="10">O (10)</option>
+                    <option value="9">A+ (9)</option>
+                    <option value="8" selected>A (8)</option>
+                    <option value="7">B+ (7)</option>
+                    <option value="6">B (6)</option>
+                    <option value="5">C (5)</option>
+                    <option value="0">RA (0)</option>
+                </select>
             </div>
-
-            <div class="result-buttons">
-
-                <button id="backBtn">
-                    Edit Subjects
+            <div class="w-full md:w-auto flex justify-end pb-1">
+                <button onclick="this.closest('.course-item').remove()" class="text-on-surface-variant hover:text-error p-2 rounded-full hover:bg-error-container/50 transition-colors" title="Remove Course">
+                    <span class="material-symbols-outlined">delete</span>
                 </button>
-
-                <button id="newCalculationBtn">
-                    New Calculation
-                </button>
-
             </div>
+        `;
+        return div;
+    }
 
-        </div>
+    function addCourse() {
+        const container = document.getElementById('courses-container');
+        container.appendChild(createCourseElement());
+    }
 
-    </div>
+    function calculateSGPA() {
+        const credits = document.querySelectorAll('.course-credit');
+        const grades = document.querySelectorAll('.course-grade');
+        
+        let totalCredits = 0;
+        let totalPoints = 0;
 
-</section>
+        for (let i = 0; i < credits.length; i++) {
+            const credit = parseFloat(credits[i].value) || 0;
+            const gradePoint = parseFloat(grades[i].value) || 0;
+
+            if (gradePoint > 0) { // RA exclusion
+                totalCredits += credit;
+                totalPoints += (credit * gradePoint);
+            }
+        }
+
+        const sgpa = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : "0.00";
+
+        document.getElementById('final-sgpa').innerText = sgpa;
+        document.getElementById('final-credits').innerText = totalCredits;
+        document.getElementById('final-points').innerText = totalPoints;
+
+        const perfText = document.getElementById('performance-text');
+        if (sgpa >= 9) perfText.innerText = "Outstanding";
+        else if (sgpa >= 8) perfText.innerText = "Excellent Performance";
+        else if (sgpa >= 7) perfText.innerText = "Good";
+        else if (sgpa >= 6) perfText.innerText = "Average";
+        else if (sgpa > 0) perfText.innerText = "Needs Improvement";
+        else perfText.innerText = "N/A";
+
+        showScreen('result-screen');
+    }
+
+    // Initialize with 2 courses
+    window.onload = () => {
+        addCourse();
+        addCourse();
+    };
+
+</script>
+</body></html>

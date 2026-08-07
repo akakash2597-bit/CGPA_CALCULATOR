@@ -1,50 +1,18 @@
-# 🎓 CGPA Calculator
+# Professional CGPA Calculator - Final Documentation
 
-A modern CGPA Calculator developed using HTML, CSS and JavaScript.
+This is a comprehensive, single-page CGPA calculator designed for students of **Rajalakshmi Institute of Technology (Affiliated to Anna University)**.
 
----
+## Overview
+The application has been consolidated into a single-file solution (`index.html`) to simplify deployment and ensure all navigation between the Welcome, Calculation, and Result states works perfectly without external dependencies.
 
-## 📌 About
+## Key Features
+- **Unified Navigation:** Seamless transitions between the Welcome screen, Calculation form, and Result summary.
+- **Dynamic Course Management:** Add and remove courses easily.
+- **Accurate Calculation:** Uses the Anna University grading system, specifically handling 'RA' grades (0 grade points, excluded from credit totals).
+- **Institutional Branding:** Features RIT's navy and gold aesthetic with professional typography.
 
-This project calculates CGPA based on the Rajalakshmi Institute of Technology (Anna University Affiliated) grading system.
+## Files
+1. **index.html**: Contains the full HTML structure, CSS styling, and JavaScript logic in one file.
 
-Formula Used:
-
-CGPA = Σ(Credit × Grade Point) / Σ(Credits)
-
----
-
-## 🚀 Features
-
-- Professional User Interface
-- Responsive Design
-- Easy Navigation
-- Accurate CGPA Calculation
-- Beginner Friendly
-
----
-
-## 🛠 Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
-- Git
-- GitHub
-
----
-
-## 📁 Project Structure
-
-CGPA-Calculator/
-│
-├── index.html
-├── style.css
-├── script.js
-└── README.md
-
----
-
-## 👨‍💻 Developer
-
-Akash
+## How to Use
+Simply copy the code from the `index.html` block into a file named `index.html` and open it in any web browser.
