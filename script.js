@@ -1,65 +1,167 @@
 const screens = {
-welcome: document.getElementById("welcomeScreen"),
-calculator: document.getElementById("calculatorScreen"),
-result: document.getElementById("resultScreen")
+    welcome: document.getElementById("welcomeScreen"),
+    calculator: document.getElementById("calculatorScreen"),
+    result: document.getElementById("resultScreen")
 };
 
 function showScreen(screen){
-
-Object.values(screens).forEach(s=>s.classList.remove("active"));
-
-screen.classList.add("active");
-
+    Object.values(screens).forEach(s=>s.classList.remove("active"));
+    screen.classList.add("active");
 }
 
 document.getElementById("startBtn").onclick=()=>{
+    showScreen(screens.calculator);
+};
 
-showScreen(screens.calculator);
+document.getElementById("resetBtn").onclick=()=>{
+
+    if(confirm("Are you sure you want to reset?")){
+        location.reload();
+    }
+
+};
+
+const subjects=document.getElementById("subjects");
+
+function createSubjectCard(){
+
+    const count=document.querySelectorAll(".subject").length+1;
+
+    const card=document.createElement("div");
+
+    card.className="subject";
+
+    card.innerHTML=`
+
+        <h3>Subject ${count}</h3>
+
+        <div class="subject-grid">
+
+            <input type="text"
+            class="code"
+            placeholder="Subject Code">
+
+            <input type="text"
+            class="name"
+            placeholder="Subject Name">
+
+            <input type="number"
+            class="credit"
+            min="1"
+            placeholder="Credits">
+
+            <select class="grade">
+
+                <option value="">Select Grade</option>
+
+                <option>O</option>
+                <option>A+</option>
+                <option>A</option>
+                <option>B+</option>
+                <option>B</option>
+                <option>C</option>
+                <option>RA</option>
+
+            </select>
+
+        </div>
+
+        <button class="removeBtn">
+            Remove Subject
+        </button>
+
+    `;
+
+    card.querySelector(".removeBtn").onclick=()=>{
+
+        card.remove();
+
+        updateNumbers();
+
+    };
+
+    subjects.appendChild(card);
+
+}
+
+function updateNumbers(){
+
+    document.querySelectorAll(".subject h3").forEach((item,index)=>{
+
+        item.textContent=`Subject ${index+1}`;
+
+    });
+
+}
+
+createSubjectCard();
+
+document.getElementById("addSubject").onclick=()=>{
+
+    createSubjectCard();
 
 };
 
 document.getElementById("calculateBtn").onclick=()=>{
 
-showScreen(screens.result);
+    const error=document.getElementById("errorBox");
 
-};
+    error.style.display="none";
 
-document.getElementById("resetBtn").onclick=()=>{
+    const cards=document.querySelectorAll(".subject");
 
-location.reload();
+    for(let i=0;i<cards.length;i++){
 
-};
+        const code=cards[i].querySelector(".code").value.trim();
 
-document.getElementById("addSubject").onclick=()=>{
+        const name=cards[i].querySelector(".name").value.trim();
 
-const div=document.createElement("div");
+        const credit=cards[i].querySelector(".credit").value;
 
-div.className="subject";
+        const grade=cards[i].querySelector(".grade").value;
 
-div.innerHTML=`
+        if(code===""){
 
-<input
-type="text"
-placeholder="Subject Name">
+            error.innerHTML=`⚠ Subject ${i+1}: Subject Code is required.`;
 
-<input
-type="number"
-placeholder="Credits">
+            error.style.display="block";
 
-<select>
+            return;
 
-<option>O</option>
-<option>A+</option>
-<option>A</option>
-<option>B+</option>
-<option>B</option>
-<option>C</option>
-<option>RA</option>
+        }
 
-</select>
+        if(name===""){
 
-`;
+            error.innerHTML=`⚠ Subject ${i+1}: Subject Name is required.`;
 
-document.getElementById("subjects").appendChild(div);
+            error.style.display="block";
+
+            return;
+
+        }
+
+        if(credit==="" || Number(credit)<=0){
+
+            error.innerHTML=`⚠ Subject ${i+1}: Enter a valid Credit.`;
+
+            error.style.display="block";
+
+            return;
+
+        }
+
+        if(grade===""){
+
+            error.innerHTML=`⚠ Subject ${i+1}: Please select a Grade.`;
+
+            error.style.display="block";
+
+            return;
+
+        }
+
+    }
+
+    showScreen(screens.result);
 
 };
