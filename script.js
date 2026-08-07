@@ -111,7 +111,55 @@ document.getElementById("addSubject").onclick=()=>{
     createSubjectCard();
 
 };
+function updatePerformance(cgpa){
 
+    const badge=document.getElementById("performanceBadge");
+
+    const message=document.getElementById("performanceMessage");
+
+    if(cgpa>=9){
+
+        badge.textContent="🏆 Outstanding";
+        message.textContent="Excellent academic performance!";
+
+    }
+
+    else if(cgpa>=8){
+
+        badge.textContent="🌟 Excellent";
+        message.textContent="Great job! Keep maintaining your performance.";
+
+    }
+
+    else if(cgpa>=7){
+
+        badge.textContent="👍 Very Good";
+        message.textContent="You are doing well. Aim even higher.";
+
+    }
+
+    else if(cgpa>=6){
+
+        badge.textContent="🙂 Good";
+        message.textContent="A good result. There is room for improvement.";
+
+    }
+
+    else if(cgpa>=5){
+
+        badge.textContent="📘 Satisfactory";
+        message.textContent="Work a little harder next semester.";
+
+    }
+
+    else{
+
+        badge.textContent="⚠ Needs Improvement";
+        message.textContent="Don't give up. You can improve your CGPA.";
+
+    }
+
+}
 
 
 document.getElementById("calculateBtn").onclick = () => {
@@ -184,6 +232,8 @@ document.getElementById("calculateBtn").onclick = () => {
 
     const cgpa = (totalGradePoints / totalCredits).toFixed(2);
 
+    updatePerformance(Number(cgpa));
+
     document.getElementById("cgpaValue").textContent = cgpa;
 
     document.getElementById("subjectCount").textContent = cards.length;
@@ -198,5 +248,10 @@ document.getElementById("calculateBtn").onclick = () => {
 document.getElementById("backBtn").onclick = () => {
 
     showScreen(screens.calculator);
+
+};
+document.getElementById("newCalculationBtn").onclick=()=>{
+
+location.reload();
 
 };

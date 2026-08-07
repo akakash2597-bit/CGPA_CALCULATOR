@@ -81,7 +81,7 @@
 
     <div class="calculator-card">
 
-        <h2>CGPA Result</h2>
+        <h2>Your Result</h2>
 
         <div class="progress">
 
@@ -95,23 +95,61 @@
 
         <div class="result-card">
 
-            <h3>Your CGPA</h3>
+            <h3>Final CGPA</h3>
 
-            <h1 id="cgpaValue">0.00</h1>
+            <div id="cgpaValue">
+                0.00
+            </div>
 
-            <div class="result-info">
+            <div id="performanceBadge">
+                Excellent
+            </div>
 
-                <p><strong>Total Subjects :</strong> <span id="subjectCount">0</span></p>
+            <p id="performanceMessage">
+                Keep up the great work!
+            </p>
 
-                <p><strong>Total Credits :</strong> <span id="totalCredits">0</span></p>
+            <hr>
 
-                <p><strong>Total Grade Points :</strong> <span id="totalGradePoints">0</span></p>
+            <div class="result-grid">
+
+                <div class="result-item">
+
+                    <h4>Total Subjects</h4>
+
+                    <p id="subjectCount">0</p>
+
+                </div>
+
+                <div class="result-item">
+
+                    <h4>Total Credits</h4>
+
+                    <p id="totalCredits">0</p>
+
+                </div>
+
+                <div class="result-item">
+
+                    <h4>Total Grade Points</h4>
+
+                    <p id="totalGradePoints">0</p>
+
+                </div>
 
             </div>
 
-            <button id="backBtn">
-                Calculate Again
-            </button>
+            <div class="result-buttons">
+
+                <button id="backBtn">
+                    Edit Subjects
+                </button>
+
+                <button id="newCalculationBtn">
+                    New Calculation
+                </button>
+
+            </div>
 
         </div>
 
