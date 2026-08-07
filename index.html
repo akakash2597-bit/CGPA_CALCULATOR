@@ -75,24 +75,46 @@
     </div>
 
 </section>
-
 <!-- ================= RESULT SCREEN ================= -->
 
 <section id="resultScreen" class="screen">
 
-    <div class="card">
+    <div class="calculator-card">
 
-        <h2>Result Screen</h2>
+        <h2>CGPA Result</h2>
 
-        <p>
-            Coming in Step 3...
-        </p>
+        <div class="progress">
+
+            <div class="active-step">1</div>
+            <div class="line"></div>
+            <div class="active-step">2</div>
+            <div class="line"></div>
+            <div class="active-step">3</div>
+
+        </div>
+
+        <div class="result-card">
+
+            <h3>Your CGPA</h3>
+
+            <h1 id="cgpaValue">0.00</h1>
+
+            <div class="result-info">
+
+                <p><strong>Total Subjects :</strong> <span id="subjectCount">0</span></p>
+
+                <p><strong>Total Credits :</strong> <span id="totalCredits">0</span></p>
+
+                <p><strong>Total Grade Points :</strong> <span id="totalGradePoints">0</span></p>
+
+            </div>
+
+            <button id="backBtn">
+                Calculate Again
+            </button>
+
+        </div>
 
     </div>
 
 </section>
-
-<script src="script.js"></script>
-
-</body>
-</html>

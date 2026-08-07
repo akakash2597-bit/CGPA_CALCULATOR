@@ -1,3 +1,13 @@
+const gradePoints = {
+    "O":10,
+    "A+":9,
+    "A":8,
+    "B+":7,
+    "B":6,
+    "C":5,
+    "RA":0
+};
+
 const screens = {
     welcome: document.getElementById("welcomeScreen"),
     calculator: document.getElementById("calculatorScreen"),
@@ -102,23 +112,29 @@ document.getElementById("addSubject").onclick=()=>{
 
 };
 
-document.getElementById("calculateBtn").onclick=()=>{
 
-    const error=document.getElementById("errorBox");
 
-    error.style.display="none";
+document.getElementById("calculateBtn").onclick = () => {
 
-    const cards=document.querySelectorAll(".subject");
+    const error = document.getElementById("errorBox");
+
+    error.style.display = "none";
+
+    const cards = document.querySelectorAll(".subject");
+
+    let totalCredits = 0;
+
+    let totalGradePoints = 0;
 
     for(let i=0;i<cards.length;i++){
 
-        const code=cards[i].querySelector(".code").value.trim();
+        const code = cards[i].querySelector(".code").value.trim();
 
-        const name=cards[i].querySelector(".name").value.trim();
+        const name = cards[i].querySelector(".name").value.trim();
 
-        const credit=cards[i].querySelector(".credit").value;
+        const credit = Number(cards[i].querySelector(".credit").value);
 
-        const grade=cards[i].querySelector(".grade").value;
+        const grade = cards[i].querySelector(".grade").value;
 
         if(code===""){
 
@@ -140,7 +156,7 @@ document.getElementById("calculateBtn").onclick=()=>{
 
         }
 
-        if(credit==="" || Number(credit)<=0){
+        if(credit<=0 || isNaN(credit)){
 
             error.innerHTML=`⚠ Subject ${i+1}: Enter a valid Credit.`;
 
@@ -152,7 +168,7 @@ document.getElementById("calculateBtn").onclick=()=>{
 
         if(grade===""){
 
-            error.innerHTML=`⚠ Subject ${i+1}: Please select a Grade.`;
+            error.innerHTML=`⚠ Subject ${i+1}: Select a Grade.`;
 
             error.style.display="block";
 
@@ -160,8 +176,27 @@ document.getElementById("calculateBtn").onclick=()=>{
 
         }
 
+        totalCredits += credit;
+
+        totalGradePoints += credit * gradePoints[grade];
+
     }
 
+    const cgpa = (totalGradePoints / totalCredits).toFixed(2);
+
+    document.getElementById("cgpaValue").textContent = cgpa;
+
+    document.getElementById("subjectCount").textContent = cards.length;
+
+    document.getElementById("totalCredits").textContent = totalCredits;
+
+    document.getElementById("totalGradePoints").textContent = totalGradePoints;
+
     showScreen(screens.result);
+
+};
+document.getElementById("backBtn").onclick = () => {
+
+    showScreen(screens.calculator);
 
 };
