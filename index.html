@@ -114,11 +114,12 @@
 <span class="font-headline-sm text-headline-sm font-bold text-on-primary dark:text-on-primary-container md:hidden">RIT</span>
 </div>
 <div class="flex items-center gap-4 hidden md:flex">
-<span class="text-on-primary font-bold cursor-pointer border-b-2 border-secondary pb-1" onclick="showScreen('welcome-screen')">Calculator</span>
-<span class="text-on-primary/80 hover:bg-primary-container/20 transition-colors cursor-pointer px-2 py-1 rounded">About</span>
+<span class="text-on-primary font-bold cursor-pointer hover:border-b-2 hover:border-secondary pb-1 transition-all" onclick="showScreen('welcome-screen')">Calculator</span>
+<span class="text-on-primary/80 hover:text-on-primary hover:border-b-2 hover:border-secondary pb-1 transition-all cursor-pointer" onclick="showScreen('about-screen')">About</span>
 <span class="material-symbols-outlined text-on-primary/80 hover:bg-primary-container/20 transition-colors cursor-pointer p-1 rounded" data-icon="account_circle">account_circle</span>
 </div>
-<div class="flex items-center md:hidden">
+<div class="flex items-center md:hidden gap-3">
+<span class="text-on-primary/80 hover:text-on-primary transition-colors cursor-pointer text-sm font-medium" onclick="showScreen('about-screen')">About</span>
 <span class="material-symbols-outlined text-on-primary/80 hover:bg-primary-container/20 transition-colors cursor-pointer p-1 rounded" data-icon="menu">menu</span>
 </div>
 </div>
@@ -181,8 +182,13 @@
 <div class="hidden-screen w-full max-w-container-max-width mx-auto flex-col gap-8" id="calculation-screen">
 <!-- Header Section -->
 <section class="flex flex-col gap-2 border-l-4 border-primary pl-4">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant text-on-surface-variant transition-colors" onclick="showScreen('welcome-screen')">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
 <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Semester GPA Calculation</h1>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Enter your course details below to calculate your SGPA. Note: RA (Reappearance) grades earn 0 grade points and are typically excluded from successful credit totals.</p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl ml-14">Enter your course details below to calculate your SGPA. Note: RA (Reappearance) grades earn 0 grade points and are typically excluded from successful credit totals.</p>
 </section>
 <!-- Calculator Card -->
 <section class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden w-full">
@@ -246,6 +252,42 @@
 </div>
 </div>
 </div>
+<!-- ABOUT SCREEN -->
+<div class="hidden-screen w-full max-w-3xl mx-auto flex-col gap-8" id="about-screen">
+<section class="flex flex-col gap-2 border-l-4 border-primary pl-4">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant text-on-surface-variant transition-colors" onclick="showScreen('welcome-screen')">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">About the Developer</h1>
+</div>
+</section>
+<section class="bg-white rounded-2xl border border-surface-variant shadow-sm p-6 md:p-10 flex flex-col items-center text-center relative overflow-hidden mt-4">
+<div class="absolute top-0 left-0 w-full h-2 bg-secondary"></div>
+<div class="w-24 h-24 rounded-full bg-primary-fixed flex items-center justify-center mb-6 text-primary border-4 border-surface shadow-md">
+<span class="material-symbols-outlined text-4xl" data-icon="person">person</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary mb-2">[Your Name]</h2>
+<p class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-6">Student Developer</p>
+<div class="flex items-center gap-2 bg-surface-container px-4 py-2 rounded-lg mb-8">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="school">school</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Rajalakshmi Institute of Technology</span>
+</div>
+<div class="max-w-xl text-center">
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+            This CGPA calculator was built to provide a simple, accurate, and user-friendly tool for RIT students to track their academic progress. It strictly follows the latest Anna University grading regulations, ensuring reliable results for every semester.
+        </p>
+</div>
+<div class="mt-10 flex gap-4">
+<a class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+</a>
+</div>
+</section>
+</div>
 </main>
 <!-- Footer -->
 <footer class="w-full py-8 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-highest dark:bg-tertiary-container mt-auto border-t border-outline-variant/20">
@@ -253,6 +295,7 @@
             © 2024 Rajalakshmi Institute of Technology. All Rights Reserved.
         </div>
 <div class="flex flex-wrap justify-center gap-6">
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer" onclick="showScreen('about-screen')">About Developer</a>
 <a class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer" href="#">Academic Calendar</a>
 <a class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer" href="#">Regulations</a>
 <a class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-tertiary-container hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer" href="#">Contact Support</a>
@@ -268,6 +311,9 @@
         
         document.getElementById('result-screen').classList.add('hidden-screen');
         document.getElementById('result-screen').classList.remove('flex');
+
+        document.getElementById('about-screen').classList.add('hidden-screen');
+        document.getElementById('about-screen').classList.remove('flex');
 
         const target = document.getElementById(screenId);
         target.classList.remove('hidden-screen');
