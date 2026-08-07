@@ -102,11 +102,12 @@
     </script>
 <style>
         .hidden-screen { display: none !important; }
+        .hidden { display: none; }
     </style>
 </head>
 <body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md antialiased selection:bg-secondary selection:text-on-secondary">
 <!-- Shared Header -->
-<header class="fixed top-0 left-0 w-full z-50 flex items-center px-margin-mobile md:px-margin-desktop h-16 bg-primary dark:bg-primary-container shadow-md border-b-4 border-secondary dark:border-secondary-fixed">
+<header class="fixed top-0 left-0 w-full z-40 flex items-center px-margin-mobile md:px-margin-desktop h-16 bg-primary dark:bg-primary-container shadow-md border-b-4 border-secondary dark:border-secondary-fixed">
 <div class="flex items-center gap-4 w-full justify-between max-w-[1200px] mx-auto">
 <div class="flex items-center gap-3">
 <span class="material-symbols-outlined text-on-primary dark:text-on-primary-container" data-icon="school">school</span>
@@ -114,16 +115,37 @@
 <span class="font-headline-sm text-headline-sm font-bold text-on-primary dark:text-on-primary-container md:hidden">RIT</span>
 </div>
 <div class="flex items-center gap-4 hidden md:flex">
-<span class="text-on-primary font-bold cursor-pointer hover:border-b-2 hover:border-secondary pb-1 transition-all" onclick="showScreen('welcome-screen')">Calculator</span>
+<span class="text-on-primary font-bold cursor-pointer hover:border-b-2 hover:border-secondary pb-1 transition-all" onclick="showScreen('welcome-screen')">Home</span>
+<span class="text-on-primary/80 hover:text-on-primary hover:border-b-2 hover:border-secondary pb-1 transition-all cursor-pointer" onclick="showScreen('calculation-screen')">Calculator</span>
 <span class="text-on-primary/80 hover:text-on-primary hover:border-b-2 hover:border-secondary pb-1 transition-all cursor-pointer" onclick="showScreen('about-screen')">About</span>
 <span class="material-symbols-outlined text-on-primary/80 hover:bg-primary-container/20 transition-colors cursor-pointer p-1 rounded" data-icon="account_circle">account_circle</span>
 </div>
 <div class="flex items-center md:hidden gap-3">
 <span class="text-on-primary/80 hover:text-on-primary transition-colors cursor-pointer text-sm font-medium" onclick="showScreen('about-screen')">About</span>
-<span class="material-symbols-outlined text-on-primary/80 hover:bg-primary-container/20 transition-colors cursor-pointer p-1 rounded" data-icon="menu">menu</span>
+<span class="material-symbols-outlined text-on-primary/80 hover:bg-primary-container/20 transition-colors cursor-pointer p-1 rounded" data-icon="menu" onclick="toggleMobileMenu()">menu</span>
 </div>
 </div>
 </header>
+<!-- Mobile Menu Overlay -->
+<div class="fixed inset-0 bg-black/50 z-50 hidden" id="mobile-menu" onclick="toggleMobileMenu()">
+<div class="fixed inset-y-0 right-0 w-64 bg-surface-container-lowest shadow-xl flex flex-col transform transition-transform" onclick="event.stopPropagation()">
+<div class="p-4 flex justify-between items-center border-b border-outline-variant">
+<span class="font-headline-sm text-primary">Menu</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer" onclick="toggleMobileMenu()">close</span>
+</div>
+<div class="flex flex-col py-2">
+<a class="px-6 py-3 font-body-lg text-on-surface hover:bg-surface-container-low transition-colors cursor-pointer" onclick="showScreen('welcome-screen'); toggleMobileMenu()">Home</a>
+<a class="px-6 py-3 font-body-lg text-on-surface hover:bg-surface-container-low transition-colors cursor-pointer" onclick="showScreen('calculation-screen'); toggleMobileMenu()">Calculator</a>
+<a class="px-6 py-3 font-body-lg text-on-surface hover:bg-surface-container-low transition-colors cursor-pointer" onclick="showScreen('about-screen'); toggleMobileMenu()">About</a>
+<a class="px-6 py-3 font-body-lg text-on-surface hover:bg-surface-container-low transition-colors cursor-pointer" href="#">Academic Calendar</a>
+<a class="px-6 py-3 font-body-lg text-on-surface hover:bg-surface-container-low transition-colors cursor-pointer" href="#">Regulations</a>
+<a class="px-6 py-3 font-body-lg text-on-surface hover:bg-surface-container-low transition-colors cursor-pointer" href="#">Contact Support</a>
+</div>
+<div class="mt-auto p-4 border-t border-outline-variant text-center">
+<p class="font-label-sm text-on-surface-variant">Developed by Ak AKASH</p>
+</div>
+</div>
+</div>
 <!-- Main Content -->
 <main class="flex-grow flex flex-col items-center justify-center pt-24 pb-16 px-margin-mobile md:px-margin-desktop relative overflow-hidden w-full">
 <!-- WELCOME SCREEN -->
@@ -135,22 +157,29 @@
 <!-- Welcome Text -->
 <div class="space-y-4 mb-10 max-w-2xl">
 <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary tracking-tight">
-                            CGPA Calculator
+                            GPA/CGPA Calculator
                         </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant">
                             Calculate your academic performance with precision. Designed specifically for students of Rajalakshmi Institute of Technology (Affiliated to Anna University).
                         </p>
 </div>
-<!-- Action Button -->
-<button class="group relative inline-flex items-center justify-center px-8 py-4 font-label-md text-label-md text-on-primary bg-primary rounded-xl overflow-hidden transition-all hover:shadow-[0_8px_25px_rgba(0,30,64,0.3)] active:scale-95" id="get-started-cta" onclick="showScreen('calculation-screen')">
-<span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
+<!-- Calculation Mode Selection -->
+<div class="flex flex-col md:flex-row gap-4 mb-10 w-full max-w-lg justify-center">
+<button class="group relative inline-flex items-center justify-center px-6 py-4 font-label-md text-label-md text-on-primary bg-primary rounded-xl overflow-hidden transition-all hover:shadow-[0_8px_25px_rgba(0,30,64,0.3)] active:scale-95 flex-1" onclick="setCalcMode('sgpa'); showScreen('calculation-screen')">
 <span class="relative flex items-center gap-2">
-                            Get Started
-                            <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+            Calculate SGPA
+            <span class="material-symbols-outlined text-lg" data-icon="calculate">calculate</span>
 </span>
 </button>
+<button class="group relative inline-flex items-center justify-center px-6 py-4 font-label-md text-label-md text-primary bg-surface-container border-2 border-primary rounded-xl overflow-hidden transition-all hover:bg-primary/10 active:scale-95 flex-1" onclick="setCalcMode('cgpa'); showScreen('calculation-screen')">
+<span class="relative flex items-center gap-2">
+            Calculate CGPA
+            <span class="material-symbols-outlined text-lg" data-icon="analytics">analytics</span>
+</span>
+</button>
+</div>
 <!-- Features Bento Box -->
-<div class="mt-20 w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="mt-8 w-full grid grid-cols-1 md:grid-cols-3 gap-6">
 <!-- Feature 1 -->
 <div class="bg-white p-6 rounded-2xl border border-surface-variant shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
 <div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center mb-4 text-primary">
@@ -186,14 +215,28 @@
 <button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant text-on-surface-variant transition-colors" onclick="showScreen('welcome-screen')">
 <span class="material-symbols-outlined">arrow_back</span>
 </button>
-<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Semester GPA Calculation</h1>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary" id="calc-title">Semester GPA Calculation</h1>
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl ml-14">Enter your course details below to calculate your SGPA. Note: RA (Reappearance) grades earn 0 grade points and are typically excluded from successful credit totals.</p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl ml-14" id="calc-desc">Enter your course details below to calculate your SGPA. Note: RA (Reappearance) grades earn 0 grade points and are typically excluded from successful credit totals.</p>
 </section>
 <!-- Calculator Card -->
 <section class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden w-full">
 <div class="border-t-4 border-secondary"></div>
 <div class="p-4 md:p-6 lg:p-8 flex flex-col gap-6">
+<!-- CGPA Previous Inputs (Hidden by default) -->
+<div class="hidden mb-6 p-4 bg-surface-container-low rounded-lg border border-outline-variant/50" id="cgpa-inputs">
+<h3 class="font-headline-sm text-primary mb-4">Previous Records</h3>
+<div class="flex flex-col md:flex-row gap-4">
+<div class="flex-1">
+<label class="font-label-sm text-on-surface-variant mb-1 block">Previous Total Credits Earned</label>
+<input class="w-full bg-white border border-outline-variant rounded p-2 focus:border-primary text-body-sm text-on-surface" id="prev-credits" min="0" step="1" type="number" value="0"/>
+</div>
+<div class="flex-1">
+<label class="font-label-sm text-on-surface-variant mb-1 block">Previous CGPA</label>
+<input class="w-full bg-white border border-outline-variant rounded p-2 focus:border-primary text-body-sm text-on-surface" id="prev-cgpa" max="10" min="0" step="0.01" type="number" value="0.00"/>
+</div>
+</div>
+</div>
 <div class="flex flex-col gap-4" id="courses-container">
 <!-- Courses will be injected here by JS -->
 </div>
@@ -203,9 +246,9 @@
 <span class="material-symbols-outlined text-sm">add</span>
                                 Add Course
                             </button>
-<button class="w-full md:w-auto px-8 py-3 rounded bg-primary text-on-primary font-label-md text-label-md shadow hover:bg-primary-container transition-colors flex items-center justify-center gap-2" onclick="calculateSGPA()">
+<button class="w-full md:w-auto px-8 py-3 rounded bg-primary text-on-primary font-label-md text-label-md shadow hover:bg-primary-container transition-colors flex items-center justify-center gap-2" onclick="calculateGPA()">
 <span class="material-symbols-outlined text-sm">calculate</span>
-                                Calculate SGPA
+                                Calculate Result
                             </button>
 </div>
 </div>
@@ -218,7 +261,7 @@
 <div class="p-6 md:p-8 flex flex-col items-center text-center mt-4">
 <!-- SGPA Display -->
 <div class="mb-2">
-<h2 class="font-headline-sm text-headline-sm text-on-surface-variant uppercase tracking-wider mb-2">Semester SGPA</h2>
+<h2 class="font-headline-sm text-headline-sm text-on-surface-variant uppercase tracking-wider mb-2" id="result-type-label">Semester SGPA</h2>
 <div class="flex items-baseline justify-center gap-1 text-primary">
 <span class="font-headline-lg-mobile md:font-headline-lg text-6xl md:text-7xl font-extrabold tracking-tighter" id="final-sgpa">0.00</span>
 </div>
@@ -278,13 +321,21 @@
             This CGPA calculator was built to provide a simple, accurate, and user-friendly tool for RIT students to track their academic progress. It strictly follows the latest Anna University grading regulations, ensuring reliable results for every semester.
         </p>
 </div>
-<div class="mt-10 flex gap-4">
+<div class="mt-10 flex flex-col items-center gap-6">
+<button class="group relative inline-flex items-center justify-center px-8 py-3 font-label-md text-label-md text-on-primary bg-primary rounded-xl overflow-hidden transition-all hover:bg-primary-container hover:shadow-md border-b-4 border-secondary active:scale-95">
+<span class="relative flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="support_agent">support_agent</span>
+                                Contact Support
+                            </span>
+</button>
+<div class="flex gap-4">
 <a class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary transition-colors" href="#">
 <span class="material-symbols-outlined" data-icon="mail">mail</span>
 </a>
 <a class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary transition-colors" href="#">
 <span class="material-symbols-outlined" data-icon="language">language</span>
 </a>
+</div>
 </div>
 </section>
 </div>
@@ -303,6 +354,37 @@
 </div>
 </footer>
 <script>
+    let currentMode = 'sgpa';
+
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+        } else {
+            menu.classList.add('hidden');
+        }
+    }
+
+    function setCalcMode(mode) {
+        currentMode = mode;
+        const cgpaInputs = document.getElementById('cgpa-inputs');
+        const calcTitle = document.getElementById('calc-title');
+        const calcDesc = document.getElementById('calc-desc');
+        const resultLabel = document.getElementById('result-type-label');
+
+        if (mode === 'cgpa') {
+            cgpaInputs.classList.remove('hidden');
+            calcTitle.innerText = 'Cumulative GPA Calculation';
+            calcDesc.innerText = 'Enter your previous records and current semester details to calculate your overall CGPA.';
+            resultLabel.innerText = 'Cumulative CGPA';
+        } else {
+            cgpaInputs.classList.add('hidden');
+            calcTitle.innerText = 'Semester GPA Calculation';
+            calcDesc.innerText = 'Enter your course details below to calculate your SGPA. Note: RA (Reappearance) grades earn 0 grade points and are typically excluded from successful credit totals.';
+            resultLabel.innerText = 'Semester SGPA';
+        }
+    }
+
     function showScreen(screenId) {
         document.getElementById('welcome-screen').classList.add('hidden-screen');
         document.getElementById('welcome-screen').classList.remove('flex');
@@ -363,35 +445,55 @@
         container.appendChild(createCourseElement());
     }
 
-    function calculateSGPA() {
+    function calculateGPA() {
         const credits = document.querySelectorAll('.course-credit');
         const grades = document.querySelectorAll('.course-grade');
         
-        let totalCredits = 0;
-        let totalPoints = 0;
+        let semCredits = 0;
+        let semPoints = 0;
 
+        // Current semester calculation
         for (let i = 0; i < credits.length; i++) {
             const credit = parseFloat(credits[i].value) || 0;
             const gradePoint = parseFloat(grades[i].value) || 0;
 
             if (gradePoint > 0) { // RA exclusion
-                totalCredits += credit;
-                totalPoints += (credit * gradePoint);
+                semCredits += credit;
+                semPoints += (credit * gradePoint);
             }
         }
 
-        const sgpa = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : "0.00";
+        let finalGpa = 0;
+        let totalDisplayCredits = semCredits;
+        let totalDisplayPoints = semPoints;
 
-        document.getElementById('final-sgpa').innerText = sgpa;
-        document.getElementById('final-credits').innerText = totalCredits;
-        document.getElementById('final-points').innerText = totalPoints;
+        if (currentMode === 'cgpa') {
+            const prevCredits = parseFloat(document.getElementById('prev-credits').value) || 0;
+            const prevCgpa = parseFloat(document.getElementById('prev-cgpa').value) || 0;
+            
+            const prevPoints = prevCredits * prevCgpa;
+            const cumulativeCredits = prevCredits + semCredits;
+            const cumulativePoints = prevPoints + semPoints;
+
+            finalGpa = cumulativeCredits > 0 ? (cumulativePoints / cumulativeCredits) : 0;
+            totalDisplayCredits = cumulativeCredits;
+            totalDisplayPoints = cumulativePoints;
+        } else {
+            finalGpa = semCredits > 0 ? (semPoints / semCredits) : 0;
+        }
+
+        const formattedGpa = finalGpa.toFixed(2);
+
+        document.getElementById('final-sgpa').innerText = formattedGpa;
+        document.getElementById('final-credits').innerText = totalDisplayCredits;
+        document.getElementById('final-points').innerText = totalDisplayPoints.toFixed(2); // Keep points to 2 dec if mixed with CGPA
 
         const perfText = document.getElementById('performance-text');
-        if (sgpa >= 9) perfText.innerText = "Outstanding";
-        else if (sgpa >= 8) perfText.innerText = "Excellent Performance";
-        else if (sgpa >= 7) perfText.innerText = "Good";
-        else if (sgpa >= 6) perfText.innerText = "Average";
-        else if (sgpa > 0) perfText.innerText = "Needs Improvement";
+        if (finalGpa >= 9) perfText.innerText = "Outstanding";
+        else if (finalGpa >= 8) perfText.innerText = "Excellent Performance";
+        else if (finalGpa >= 7) perfText.innerText = "Good";
+        else if (finalGpa >= 6) perfText.innerText = "Average";
+        else if (finalGpa > 0) perfText.innerText = "Needs Improvement";
         else perfText.innerText = "N/A";
 
         showScreen('result-screen');
