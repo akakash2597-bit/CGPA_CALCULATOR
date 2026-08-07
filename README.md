@@ -1,25 +1,26 @@
-<<<<<<< HEAD
 # 🎓 CGPA Calculator
 
-A professional CGPA Calculator developed using HTML, CSS and JavaScript.
+A modern CGPA Calculator developed using HTML, CSS and JavaScript.
 
 ---
 
-## 📖 About
+## 📌 About
 
-This project is being developed step by step using Git and GitHub.
+This project calculates CGPA based on the Rajalakshmi Institute of Technology (Anna University Affiliated) grading system.
 
-The calculator follows the Rajalakshmi Institute of Technology (Anna University) CGPA calculation method.
+Formula Used:
+
+CGPA = Σ(Credit × Grade Point) / Σ(Credits)
 
 ---
 
-## 🚀 Features (Current)
+## 🚀 Features
 
-- Professional Landing Page
+- Professional User Interface
 - Responsive Design
-- Modern User Interface
-- Smooth Scrolling
-- Clean Code Structure
+- Easy Navigation
+- Accurate CGPA Calculation
+- Beginner Friendly
 
 ---
 
@@ -33,19 +34,17 @@ The calculator follows the Rajalakshmi Institute of Technology (Anna University)
 
 ---
 
-## 📌 Project Status
+## 📁 Project Structure
 
-✅ Step 1 - Welcome Page
+CGPA-Calculator/
+│
+├── index.html
+├── style.css
+├── script.js
+└── README.md
 
-✅ Step 2.1 - Calculator Layout
+---
 
-✅ Step 2.2 - Dynamic Subject Cards
+## 👨‍💻 Developer
 
-✅ Step 2.3 - Validation & UX
-
-⬜ Step 2.4 - Prepare Calculation
-
-⬜ Step 3 - Result Page
-=======
-# CGPA_CALCULATOR
->>>>>>> c84920ddd1c500f930719223ee8794312187127d
+Akash

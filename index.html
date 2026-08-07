@@ -1,201 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
 
-    <title>CGPA Calculator | RIT</title>
-
-    <link rel="stylesheet"
-          href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- ================= NAVBAR ================= -->
+<!-- ================= WELCOME SCREEN ================= -->
 
-    <header>
+<section id="welcomeScreen" class="screen active">
 
-        <nav>
+    <div class="card">
 
-            <h2 class="logo">
-                CGPA Calculator
-            </h2>
+        <h1>CGPA Calculator</h1>
 
-            <button id="startBtn">
-                Get Started
-            </button>
+        <p>
+            Calculate your CGPA accurately using the
+            Rajalakshmi Institute of Technology grading system.
+        </p>
 
-        </nav>
+        <button id="startBtn">
+            Start Calculating
+        </button>
 
-    </header>
+    </div>
 
-    <!-- ================= HERO ================= -->
+</section>
 
-    <section class="hero">
+<!-- ================= CALCULATOR SCREEN ================= -->
 
-        <div class="hero-content">
+<section id="calculatorScreen" class="screen">
 
-            <h1>
-                Calculate Your CGPA Easily
-            </h1>
-
-            <p>
-
-                A simple and professional CGPA Calculator
-                for Rajalakshmi Institute of Technology
-                students.
-
-            </p>
-
-            <button id="heroBtn">
-                Start Calculating
-            </button>
-
-        </div>
-
-    </section>
-
-    <!-- ================= FEATURES ================= -->
-
-    <section class="features">
-
-        <h2>Features</h2>
-
-        <div class="card-container">
-
-            <div class="card">
-
-                <h3>Fast Calculation</h3>
-
-                <p>
-                    Calculate your CGPA within seconds.
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Accurate Formula</h3>
-
-                <p>
-                    Uses the official Credit × Grade Point
-                    calculation.
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Responsive</h3>
-
-                <p>
-                    Works perfectly on desktop and mobile.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-<!-- =======================================================
-                    CALCULATOR SECTION
-======================================================= -->
-
-<section id="calculator" class="calculator-section">
-
-    <div class="calculator-container">
+    <div class="calculator-card">
 
         <h2>CGPA Calculator</h2>
 
-        <p class="calculator-description">
-            Calculate your CGPA semester by semester using the official Rajalakshmi Institute of Technology grading system.
-        </p>
+        <div class="progress">
 
-        <!-- STEP 1 -->
+            <div class="active-step">1</div>
+            <div class="line"></div>
+            <div class="active-step">2</div>
+            <div class="line"></div>
+            <div>3</div>
 
-        <div class="step-card">
+        </div>
 
-            <h3>Step 1</h3>
+        <div class="formula">
 
-            <label for="semesterCount">
+            CGPA =
+            Σ(Credit × Grade Point)
+            ÷
+            Σ(Credits)
 
-                Number of Completed Semesters
+        </div>
 
-            </label>
+        <div id="subjects">
 
-            <input
-                type="number"
-                id="semesterCount"
-                min="1"
-                max="8"
-                placeholder="Example : 4">
+            <div class="subject">
 
-            <button id="generateSemesterBtn">
+                <input
+                    type="text"
+                    placeholder="Subject Name">
 
-                Continue
+                <input
+                    type="number"
+                    placeholder="Credits">
 
+                <select>
+
+                    <option>O</option>
+                    <option>A+</option>
+                    <option>A</option>
+                    <option>B+</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>RA</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <button id="addSubject">
+            + Add Subject
+        </button>
+
+        <div class="buttons">
+
+            <button id="resetBtn">
+                Reset
             </button>
-
-        </div>
-
-        <!-- Validation Message -->
-
-        <div id="messageBox" class="message-box"></div>
-
-        <!-- STEP 2 -->
-
-        <div id="semesterContainer">
-
-        </div>
-
-        <!-- STEP 3 -->
-
-        <div id="subjectContainer">
-
-        </div>
-
-        <!-- BUTTONS -->
-
-        <div class="button-area">
-
-            <button
-                id="generateSubjectsBtn"
-                style="display:none;">
-
-                Generate Subjects
-
-            </button>
-
-            <button
-                id="calculateBtn"
-                style="display:none;">
-
-                Calculate CGPA
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-        <!-- Subject Cards -->
-
-        <div id="subjectsContainer">
-
-        </div>
-
-        <div class="calculate-area">
 
             <button id="calculateBtn">
-
                 Calculate CGPA
-
             </button>
 
         </div>
@@ -204,24 +105,23 @@
 
 </section>
 
-    <!-- ================= FOOTER ================= -->
+<!-- ================= RESULT SCREEN ================= -->
 
-    <footer>
+<section id="resultScreen" class="screen">
+
+    <div class="card">
+
+        <h2>Result Screen</h2>
 
         <p>
-
-            © 2026 CGPA Calculator
-
+            Coming in Step 3...
         </p>
 
-    </footer>
+    </div>
 
-<script src="assets/js/ui.js"></script>
-<script src="assets/js/validation.js"></script>
-<script src="assets/js/semester.js"></script>
-<script src="assets/js/cgpa.js"></script>
-<script src="assets/js/main.js"></script>
+</section>
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
